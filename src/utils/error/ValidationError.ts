@@ -1,17 +1,15 @@
 import { StatusCodes } from "http-status-codes";
 
 export class ValidationError extends Error{
-    name:string;
     message:string;
     details?:any;
     statusCode:number;
-    constructor(details?:any){
+    constructor(message = "Validation Failed",details?:any,statusCode = StatusCodes.BAD_REQUEST){
         super();
 
-        this.name = "Validation Error";
-        this.message = "Validation Failed";
-        this.statusCode = StatusCodes.BAD_REQUEST;
+        this.message = message;
         this.details = details;
+        this.statusCode = statusCode;
     }
 
 }

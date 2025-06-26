@@ -7,6 +7,14 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model booking{
+model Booking{
   id Int @id @default(autoincrement())
+  userId Int
+  status Status @default(IN_PROCESS)
+}
+
+enum Status{
+  IN_PROCESS
+  BOOKED
+  CANCELLED
 }

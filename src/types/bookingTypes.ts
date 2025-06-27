@@ -1,7 +1,10 @@
-export interface BookingProps{
+export interface BookingProps extends statusProps{
     userId:number,
     flightId:number,
-    status: "IN_PROCESS" | "BOOKED" | "CANCELLED",
     noOfSeats?: number,
     totalCost?:number
+}
+
+export interface statusProps{
+    status:"IN_PROCESS" | "BOOKED" | "CANCELLED"
 }

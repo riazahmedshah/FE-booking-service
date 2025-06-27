@@ -1,6 +1,6 @@
 import { PrismaClientKnownRequestError } from "@prisma/client/runtime/library";
 import { prisma } from "../config/db";
-import { BookingProps } from "../types/bookingTypes";
+import { BookingProps, statusProps } from "../types/bookingTypes";
 import { ValidationError } from "../utils/error/ValidationError";
 import { AppError } from "../utils/error/AppErrors";
 
@@ -28,6 +28,25 @@ export class BookingRepository{
                 "There was an issue, please try again in some time."
             )
 
+        }
+    }
+
+    static async updateBooking(id:number, data: statusProps){
+        try {
+            return await prisma.booking.update({
+                where:{
+                    id
+                },
+                data:{
+                    status: data.status
+                },
+            })
+        } catch (error) {
+            throw new AppError(
+                "Repository Error",
+                "Unable to update Booking",
+                "There was an issue to update booking, please try again in some time."
+            )
         }
     }
 }

@@ -9,7 +9,11 @@ export class BookingRepository{
         try {
             return await prisma.booking.create({
                 data:{
-                    ...data
+                    flightId:data.flightId,
+                    userId:data.userId,
+                    status:data.status,
+                    noOfSeats:data.noOfSeats,
+                    totalCost:data.totalCost,
                 }
             })
         } catch (error) {
